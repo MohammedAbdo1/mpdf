@@ -5632,7 +5632,8 @@ class Otl
 		}
 
 		for ($i = ($numchars - 1); $i > 0; $i--) {
-			if ($bidiData[$i]['type'] == Ucdn::BIDI_CLASS_WS || (isset($bidiData[$i]['orig_type']) && $bidiData[$i]['orig_type'] == Ucdn::BIDI_CLASS_WS)) {
+			// Fix: Check if 'type' key exists before accessing it to prevent "Undefined array key" errors
+			if (isset($bidiData[$i]['type']) && ($bidiData[$i]['type'] == Ucdn::BIDI_CLASS_WS || (isset($bidiData[$i]['orig_type']) && $bidiData[$i]['orig_type'] == Ucdn::BIDI_CLASS_WS))) {
 				$bidiData[$i]['level'] = $pel;
 			} else {
 				break;
